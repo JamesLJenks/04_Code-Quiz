@@ -20,8 +20,8 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
-                  <a class="nav-link" href="#highScores">High Scores</a>
+                  <a class="nav-link active" href="./index.html" aria-current="page" href="#">Quiz</a>
+                  <a class="nav-link" href="./highscores.html">High Scores</a>
                 </div>
               </div>
             </div>
@@ -37,93 +37,46 @@
 
     <!-- Main Quiz Section -->
     <main class="container border border-gray bg-white">
-        <div class="row py-3">
-            <div class="col border-bottom border-gray text-center m-sm-4 m-2" id="timer">
-                <h2>JavaScript Coding Quiz</h2>
-            </div>
-        </div>
-        <div class="row m-sm-4 m-2">
-            <div class="col col-md-12 text-center" id="questionCont">        
-                <h5>Try to answer the following five JavaScript code-related questions within the 60-second time limit.</h5>
-                <p>Each incorrect answer will penalize your score and decrease your time by 10 seconds!</p>
-                <br>
-                <hr>
-                <button type="button" class="btn btn-primary" id="startBtn">Start Quiz</button>
-            </div>
-        </div>
-            
-    <!-- Quiz Questions -->
-    <div id="question-1" class="container">
-        <h5>Commonly used data types DO NOT include:</h5>
-        <ul class="btn-grid">
-            <li><button class="btn">strings</button></li>
-            <li><button class="btn">booleans</button></li>
-            <li><button class="btn">alerts</button></li>
-            <li><button class="btn">numbers</button></li>
-        </ul>
-    </div>
-    <div id="question-2" class="container">
-        <h5>String values must be enclosed within ______ when being assigned variables.</h5>
-        <ul class="btn-grid">
-            <li><button class="btn">commas</button></li>
-            <li><button class="btn">curly brackets</button></li>
-            <li><button class="btn">quotes</button></li>
-            <li><button class="btn">parentheses</button></li>
-        </ul>
-    </div>
-    <div id="questions-3" class="container">
-        <h5>Arrays in JavaScript can be used to store ______.</h5>
-        <ul class="btn-grid">
-            <li><button class="btn">numbers and strings</button></li>
-            <li><button class="btn">other arrays</button></li>
-            <li><button class="btn">booleans</button></li>
-            <li><button class="btn">all of the above</button></li>
-        </ul>
-    </div>
-    <div id="question-4" class="container">
-        <h5>The condition in an if / else statement is enclosed with ______.</h5>
-        <ul class="btn-grid">
-            <li><button class="btn">quotes</button></li>
-            <li><button class="btn">curly brackets</button></li>
-            <li><button class="btn">parentheses</button></li>
-            <li><button class="btn">square brackets</button></li>
-        </ul>
-    </div>
-    <div id="question-5" class="container">
-        <h5>A very useful tool used during development and debugging for printing content to the debugger is:</h5>
-        <ul class="btn-grid">
-            <li><button class="btn">JavaScript</button></li>
-            <li><button class="btn">terminal / bash</button></li>
-            <li><button class="btn">for loops</button></li>
-            <li><button class="btn">console.log</button></li>
-        </ul>
-    </div>
-        <!-- High Scores Section -->
-        <main class="container border border-gray bg-white mt-2">
-            <div class="row m-sm-4 m-2">
-                <div class="col border-bottom border-gray text-center">
-                    <h2>High Scores</h2>
+        <div id="startScreen">
+            <div class="row py-3">
+                <div class="col border-bottom border-gray text-center m-sm-4 m-2" id="timer">
+                    <h2>JavaScript Coding Quiz</h2>
                 </div>
             </div>
             <div class="row m-sm-4 m-2">
-                <div class="col border-gray ">
-                    <div class="row m-sm-4 m-2">
-                        <div class="col-sm-2 col-md-3 col-lg-4"></div>
-                        <div class="col-sm-8 col-md-6 col-lg-4">
-                            <ol class="highScores" id="highScoresList">
-                            </ol>
-                        </div>
-                        <div class="col-sm-2 col-md-3 col-lg-4"></div>         
-                    </div>
-                    <div class="row">
-                        <div class="col text-center">
-                            <br>
-                            <hr>
-                            <button type="button" class="btn btn-secondary" id="goBackBtn">Go Back</button>
-                            <button type="button" class="btn btn-secondary" id="highScoreBtn">Clear High Scores</button>
-                        </div>
-                    </div>
+                <div class="col col-md-12 text-center" id="questionCont">        
+                    <h5>Try to answer the following five JavaScript code-related questions within the 60-second time limit.</h5>
+                    <h5>Each incorrect answer will penalize your score and decrease the timer by 10 seconds!</h5>
+                    <br>
+                    <hr>
+                    <button type="button" class="btn btn-secondary" id="startBtn">Start Quiz</button>
                 </div>
             </div>
-        </main>
-</main>
+        </div>
+        <div>
+            <h5>Time: <span id="time">0</span></h5>
+        </div>
+        <div id="questions" class="hide">
+            <h2 id="question-title"></h2>
+            <div id="choices" class="choices"></div>
+          </div>
+          <div id="end-screen" class="hide">
+            <h2>All done!</h2>
+            <p>Your final score is <span id="final-score"></span>.</p>
+            <p>
+              Enter initials: <input type="text" id="name" max="3" />
+              <button id="submit">Submit</button>
+            </p>
+          </div>
+          <div id="feedback" class="feedback hide"></div>
+    </main>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="./assets/js/script.js"></script>
+
+</html>
+
+
