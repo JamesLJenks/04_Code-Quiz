@@ -33,7 +33,7 @@ var quizQuestions = [
     }
   ];
 
-var time = quizQuestions.length * 10;
+var time = quizQuestions.length * 12;
 var questionIndex = 0;
 var timerState;
 var startBtn = document.getElementById("startBtn");
@@ -44,7 +44,8 @@ var goBackBtn = document.getElementById("goBackBtn")
 var resultsDiv = document.getElementById("results");
 var refreshButton = document.getElementById("clear-highScores");
 var timerDiv = document.getElementById("time");
-
+var choicesDiv = document.getElementById("choices");
+var endScreen = document.getElementById("end-screen");
 var initialsElement = document.getElementById("initials");
 var feedbackElement = document.getElementById("feedback");
 
@@ -71,9 +72,9 @@ function startQuiz () {
     startScreen.setAttribute("class", "hide");
     questionsDiv.removeAttribute("class")
 
-    timeState = setInterval(defineInterval, 1000)
+    timerState = setInterval(defineInterval, 1000)
     timerDiv.textContent = time;
-    // function to display question
+    displayQuestions ();
 }
 
 // Function to assess and score responses.
@@ -85,15 +86,61 @@ function startQuiz () {
     // If question is answered incorrectly,
         // Then subtract points
 
+function displayQuestions () {
+    currentQuestion = quizQuestions[questionIndex];
+    var questionTitle = document.getElementById("question-title");
+    questionTitle.textContent = currentQuestion.title;
+    // Clear out previous questions
+    choicesDiv.textContent = ""
 
+    // Use a for each to render a question button for each answer in the choices array
+    currentQuestion.choices.forEach(function (choice) {
+        var choiceButton = document.createElement("button");
+        choiceButton.setAttribute("class", "choice");
+        choiceButton.setAttribute("value", choice);
+        choiceButton.textContent = choice;
+
+        choiceButton.onclick = checkAnswer;
+        choicesDiv.appendChild(choiceButton);
+    });
+}
+
+function checkAnswer () {
+    if (this.value !== quizQuestions [questionIndex].answer) {
+        time = time-10;
+        timerDiv.textContent = time;
+        feedbackElement.textContent = "Incorrect"
+        console.log("Incorrect");
+    } else {
+        feedbackElement.textContent = "Correct!"
+        console.log("Correct!")  
+    }
+
+    questionIndex++;
+
+    if (questionIndex === quizQuestions.length) {
+        quizEnd ();
+    } else {
+        displayQuestions ();
+    }
+
+}
 
 
 
 // Stops the timer and ends the quiz
 function quizEnd () {
-    clearInterval (timerState)
+    clearInterval (timerState);
+    console.log("Clicked to end of question array")
+    endScreen.removeAttribute ("class");
+    questionsDiv.setAttribute ("class", "hide")
 }
 
 
 
 startBtn.onclick = startQuiz;
+
+// set score to be the time
+// put feedback element (correct or incorrect) on a feedback loop (one way to do it)
+// store high scores by grabbing value of name input
+// create an object (var scoreObject = {score: time, initials: value of name input})
