@@ -46,7 +46,7 @@ var timerDiv = document.getElementById("time");
 var endScreen = document.getElementById("end-screen");
 var initialsElement = document.getElementById("initials");
 var feedbackElement = document.getElementById("feedback");
-var score = 0;
+var score;
 var resultsDiv = document.getElementById("results-div")
 
 // High Scores Page Variables
@@ -120,6 +120,9 @@ function quizEnd () {
     console.log("Clicked to end of question array")
     endScreen.removeAttribute ("class");
     questionsDiv.setAttribute ("class", "hide")
+    score = time;
+    console.log(score);
+    resultsDiv.textContent = score;
 }
 
 startBtn.onclick = startQuiz;
