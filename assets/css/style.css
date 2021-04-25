@@ -22,6 +22,30 @@
     background-color: rgb(24, 69, 59);
 }
 
+/* .answerBtn {
+    display: grid;
+    background-color: #750b5b;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+    color: #eee;
+    outline: none;
+}
+.answerBtn:hover {
+    background-color: #96658a;
+} */
+
+/* .submitBtn {
+    display: inline-block;
+    background-color: #750b5b;
+    border-radius: 5px;
+    margin: 5px;
+    color: #eee;
+    outline: none;
+}
+.submitBtn:hover {
+    background-color: #96658a; */
+
 ul,li { 
     list-style-type: none;
     list-style-position:inside;

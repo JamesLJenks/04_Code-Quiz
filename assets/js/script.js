@@ -33,34 +33,32 @@ var quizQuestions = [
     }
   ];
 
+// Quiz Page Variables
 var time = quizQuestions.length * 12;
 var questionIndex = 0;
 var timerState;
 var startBtn = document.getElementById("startBtn");
 var questionsDiv = document.getElementById("questions");
 var choicesDiv = document.getElementById("choices");
-var highScoreBtn = document.getElementById("clearHighScoresBtn");
-var goBackBtn = document.getElementById("goBackBtn")
 var resultsDiv = document.getElementById("results");
 var refreshButton = document.getElementById("clear-highScores");
 var timerDiv = document.getElementById("time");
-var choicesDiv = document.getElementById("choices");
 var endScreen = document.getElementById("end-screen");
 var initialsElement = document.getElementById("initials");
 var feedbackElement = document.getElementById("feedback");
+var score = 0;
+var resultsDiv = document.getElementById("results-div")
 
-// Function to start quiz
-    // JavaScript coding text block and start button hide
-    // Timer appears and starts
-    // First question appears below timer
+// High Scores Page Variables
+var clearHighScoresBtn = document.getElementById("clearHighScoresBtn");
+var goBackBtn = document.getElementById("goBackBtn")
 
-// Function to run the timer (setInterval?)
-    // If timer runs out before quiz is over, deliver message
+
+// Function to decrement the time.
 function defineInterval () {
     time--;
     timerDiv.textContent = time;
     if (time <= 0) {
-        console.log ("Time is up!")
     
     quizEnd ();
     }
@@ -77,15 +75,6 @@ function startQuiz () {
     displayQuestions ();
 }
 
-// Function to assess and score responses.
-    // If question is answered correctly,
-        // Then score points (store in )
-        // Then Deliver "Correct!" message
-        // Then hide question block
-        // Then advance to next question
-    // If question is answered incorrectly,
-        // Then subtract points
-
 function displayQuestions () {
     currentQuestion = quizQuestions[questionIndex];
     var questionTitle = document.getElementById("question-title");
@@ -99,7 +88,6 @@ function displayQuestions () {
         choiceButton.setAttribute("class", "choice");
         choiceButton.setAttribute("value", choice);
         choiceButton.textContent = choice;
-
         choiceButton.onclick = checkAnswer;
         choicesDiv.appendChild(choiceButton);
     });
@@ -126,8 +114,6 @@ function checkAnswer () {
 
 }
 
-
-
 // Stops the timer and ends the quiz
 function quizEnd () {
     clearInterval (timerState);
@@ -136,9 +122,8 @@ function quizEnd () {
     questionsDiv.setAttribute ("class", "hide")
 }
 
-
-
 startBtn.onclick = startQuiz;
+
 
 // set score to be the time
 // put feedback element (correct or incorrect) on a feedback loop (one way to do it)
